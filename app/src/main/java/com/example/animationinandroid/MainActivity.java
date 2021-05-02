@@ -11,6 +11,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
@@ -27,28 +28,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TranslateAnimation translateAnimation = new TranslateAnimation(Animation.RELATIVE_TO_PARENT, 0 ,Animation.RELATIVE_TO_PARENT, 0, Animation.RELATIVE_TO_SELF, 0, Animation.RELATIVE_TO_PARENT, 0.6f);
-
-        translateAnimation.setFillAfter(true);
-        translateAnimation.setRepeatCount(Animation.INFINITE);
-        translateAnimation.setDuration(1000);
-        translateAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
+        RotateAnimation rotateAnimation = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        rotateAnimation.setDuration(1000);
 
         ImageView imageView = findViewById(R.id.iv_main);
-
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "ImageView Clicked !", Toast.LENGTH_SHORT).show();
-            }
-        });
-
 
         ExtendedFloatingActionButton extendedFloatingActionButton = findViewById(R.id.fab_main);
         extendedFloatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imageView.startAnimation(translateAnimation);
+                imageView.startAnimation(rotateAnimation);
             }
         });
     }
