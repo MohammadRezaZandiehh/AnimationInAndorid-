@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
@@ -21,34 +22,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        AlphaAnimation alphaAnimation = new AlphaAnimation(1, 0);
-        alphaAnimation.setDuration(3000);
-        alphaAnimation.setFillAfter(true);
-        alphaAnimation.setRepeatCount(3);   //Animation.INFINITE = -1
-        alphaAnimation.setRepeatMode(Animation.REVERSE);    // Animation.REVERSE = 2
-        alphaAnimation.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
+        ScaleAnimation scaleAnimation = new ScaleAnimation(1, 2, 1, 2);
+        scaleAnimation.setDuration(1000);
 
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                Log.i(TAG, "onAnimationEnd: ");
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-                Log.i(TAG, "onAnimationRepeat: ");
-            }
-        });
 
         ImageView imageView = findViewById(R.id.iv_main);
         ExtendedFloatingActionButton extendedFloatingActionButton = findViewById(R.id.fab_main);
         extendedFloatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imageView.startAnimation(alphaAnimation);
+                imageView.startAnimation(scaleAnimation);
             }
         });
     }
