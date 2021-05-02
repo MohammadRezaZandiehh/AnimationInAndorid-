@@ -2,7 +2,9 @@ package com.example.animationinandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -12,6 +14,8 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,8 +24,24 @@ public class MainActivity extends AppCompatActivity {
         AlphaAnimation alphaAnimation = new AlphaAnimation(1, 0);
         alphaAnimation.setDuration(3000);
         alphaAnimation.setFillAfter(true);
-        alphaAnimation.setRepeatCount(Animation.INFINITE);   //Animation.INFINITE = -1
+        alphaAnimation.setRepeatCount(3);   //Animation.INFINITE = -1
         alphaAnimation.setRepeatMode(Animation.REVERSE);    // Animation.REVERSE = 2
+        alphaAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                Log.i(TAG, "onAnimationEnd: ");
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                Log.i(TAG, "onAnimationRepeat: ");
+            }
+        });
 
         ImageView imageView = findViewById(R.id.iv_main);
         ExtendedFloatingActionButton extendedFloatingActionButton = findViewById(R.id.fab_main);
