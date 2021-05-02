@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         AlphaAnimation alphaAnimation = new AlphaAnimation(1, 0);
         alphaAnimation.setDuration(3000);
         alphaAnimation.setFillAfter(true);
+        alphaAnimation.setRepeatCount(-1);
 
         ImageView imageView = findViewById(R.id.iv_main);
         ExtendedFloatingActionButton extendedFloatingActionButton = findViewById(R.id.fab_main);
